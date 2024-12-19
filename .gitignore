@@ -1,0 +1,84 @@
+# Laravel specific
+/vendor/
+/node_modules/
+/public/hot
+/public/storage
+/public/build
+/storage/*.key
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+/bootstrap/cache/*
+
+# Environment files
+.env
+.env.backup
+.env.production
+.env.local
+.env.*.local
+
+# Laravel Mix / Vite
+/public/css/
+/public/js/
+/public/mix-manifest.json
+/public/build
+/public/dist
+
+# IDE specific
+/.idea
+/.vscode
+*.sublime-project
+*.sublime-workspace
+/.phpstorm.meta.php
+/_ide_helper.php
+/_ide_helper_models.php
+.phpstorm.meta.php
+
+# Testing
+.phpunit.result.cache
+.phpunit.cache
+/coverage/
+
+# Package managers
+composer.phar
+package-lock.json
+yarn.lock
+npm-debug.log
+yarn-error.log
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local development
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+.vagrant/
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Application specific
+/public/uploads/
+/public/images/
+/public/media/
+
+# Cache and logs
+*.log
+.cache/
+
+# Optional: Ignore compiled assets
+/public/css/app.css
+/public/js/app.js
+/public/mix-manifest.json
+
+# Optional: Ignore local configuration files
+auth.json
+config.local.php
