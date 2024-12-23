@@ -5,28 +5,29 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class CheckApiDocAccess
 {
-   
-
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check()) {
-            abort(403, 'Unauthorized');
+        if (!Auth::check()) {
+            abort(403, 'Unauthorized: You must be logged in to access this resource.');
         }
 
-        $user = auth()->user();
-        if (Auth::user()->hasRole('super_admin')) {
+        $user = Auth::user();
+
+        if ($user->hasRole('super_admin')) {
             return $next($request);
         }
 
-        abort(403, 'You do not have permission to access the API documentation.');
+        abort(403, 'Forbidden: You do not have permission to access the API documentation.');
     }
 }

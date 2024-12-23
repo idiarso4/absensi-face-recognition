@@ -11,8 +11,8 @@ class Login extends BasePage
         parent::mount();
 
         $this->form->fill([
-            'email' => 'admin@dewakoding.com',
-            'password' => 'password',
+            'email' => 'idiarso@smkn1punggelan.sch.id',
+            'password' => 'smk-bisa',
             'remember' => true,
         ]);
     }

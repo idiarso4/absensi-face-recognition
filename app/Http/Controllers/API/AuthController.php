@@ -16,7 +16,7 @@ class AuthController extends Controller
            /**
              * Email
              * 
-             * @example pegawai-b@dewakoding.com
+             * @idiarso@smkn1punggelan.sch.id
              */
             'email' => 'required|email',
             /**
