@@ -10,6 +10,7 @@ use Illuminate\Routing\Route;
 use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\SecurityScheme;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,16 +33,13 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define('viewApiDocs', function ($user) {
             Log::info('viewApiDocs gate called for user: ' . $user->email);
-            
-            $allowed = in_array($user->email, [
-                'septiawanajipradana@gmail.com',
-                
-            ]);
 
-            dd($allowed);
-            
+            // Allow list from env (comma separated), fallback to default array
+            $allowedList = array_filter(array_map('trim', explode(',', (string) env('API_DOCS_ALLOWED_EMAILS', 'septiawanajipradana@gmail.com'))));
+            $allowed = in_array($user->email, $allowedList, true);
+
             Log::info('Access ' . ($allowed ? 'granted' : 'denied') . ' for ' . $user->email);
-            
+
             return $allowed;
         });
 

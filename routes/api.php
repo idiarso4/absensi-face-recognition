@@ -6,7 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\AttendanceController;
 use App\Http\Controllers\API\LeaveController;
 
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::match(['GET', 'POST'], '/login', [AuthController::class, 'login'])->name('login');
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/get-attendance-today',[AttendanceController::class, 'getAttendanceToday'])->name('get_attendance_today');

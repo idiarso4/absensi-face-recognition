@@ -21,7 +21,17 @@ class ScheduleResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-m-calendar-days';
     protected static ?int $navigationSort = 6;
 
-    protected static ?string $navigationGroup = 'Attendance Management';
+    protected static ?string $navigationGroup = 'Manajemen Absensi';
+
+    public static function getModelLabel(): string
+    {
+        return 'Jadwal';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Jadwal';
+    }
 
     public static function form(Form $form): Form
     {

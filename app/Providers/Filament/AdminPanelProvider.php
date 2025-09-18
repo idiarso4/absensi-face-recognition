@@ -35,6 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+                \App\Filament\Pages\UserDashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([])
@@ -55,14 +56,19 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
             ])
+            ->renderHook(
+                'panels::body.end',
+                fn () => view('filament.session-timeout')
+            )
             ->navigationGroups([
                 'Sekolah Kedinasan',
                 'Pembelajaran',
                 'Penjualan',
                 'Tryout',
-                'Management Super Admin',
+                'Manajemen Super Admin',
             ])
             ->brandLogo(false)
-            ->brandName('PRESENSI-SKANSAPUNG');
+            ->brandName('PRESENSI-SKANSAPUNG')
+            ->breadcrumbs(true);
     }
 }

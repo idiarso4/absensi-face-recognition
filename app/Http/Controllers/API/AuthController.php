@@ -12,6 +12,14 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
+        if ($request->isMethod('get')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Method not allowed. Use POST for login.',
+                'data' => null,
+            ], 405);
+        }
+
         $request->validate([
            /**
              * Email
